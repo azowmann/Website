@@ -1,0 +1,516 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head><title>M1/Midterm-1-2A_Correctness/zhoua39__Alan+Zhou/zhoua39__Alan+Zhou__2023-10-20_18:41:15.880604_EDT_MARKING-2023-11-05_19:41:09.890796_EST.calcnb checked by CalcCheck-0.4.0.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<style  type="text/css">
+<!--
+.var { color: #000088; }
+.op  { color: #664400; }
+.ConjStatusAxiom{ color: #075; }
+.ConjStatusProven{ color: #070; }
+.ConjStatusOpen{ color: #800; }
+.ConjStatusRelative{ color: #770; }
+.HBConjStatusAxiom{ font-weight:900; font-size:112%; color:#075; }
+.HBConjStatusProven{ font-weight:900; font-size:112%; color:#070; }
+.HBConjStatusOpen{ font-weight:900; font-size:112%; color:#800; }
+.HBConjStatusRelative{ font-weight:900; font-size:112%; color:#770; }
+.TRConjStatusAxiom{ text-decoration: #075 20% underline; underline; }
+.ARConjStatusAxiom{ text-decoration: #075 15% underline; underline; }
+
+.TRConjStatusProven{ text-decoration: #070 20% underline; underline; }
+.ARConjStatusProven{ text-decoration: #070 15% underline; underline; }
+
+.TRConjStatusOpen{ text-decoration: #800 20% underline; underline; }
+.ARConjStatusOpen{ text-decoration: #800 wavy 10% underline; underline; }
+
+.TRConjStatusRelative{ text-decoration: #770 20% underline; underline; }
+.ARConjStatusRelative{ text-decoration: #770 15% underline; underline; }
+
+.RKInternalErr{ color: #AA0000; }
+.RKImportErr{ color: #AA0000; }
+.RKParseErr{ color: #FF0000; }
+.RKTypeErr{ color: #FF8800; }
+.RKInvalid{ color: #D00000; }
+.RKViolation{ color: #FF0088; }
+.RKDefect{ color: #DD4400; }
+.RKEmptyHint{ color: #B80000; }
+.RKCheckFailed{ color: #AA0000; }
+.RKCheckTimedOut{ color: #BB0000; }
+.RKInconclusive{ color: #AA0000; }
+.RKPoor{ color: #EE8866; }
+.RKWarning{ color: #AA0099; }
+.RKNotImpl{ color: #888888; }
+.RKInfo{ color: #005599; }
+.RKProviso{ color: #006699; }
+.RKOppositeImpl{ color: #DD0077; }
+.RKPersReport{ color: #BB00DD; }
+.RKNoChange{ color: #447700; }
+.RKConfirmedOK{ color: #008000; }
+-->
+</style>
+</head>
+<body style="line-height:130%" bgcolor="#FFFFFF">
+
+<h3>zhoua39__Alan+Zhou__2023-10-20_18:41:15.880604_EDT_MARKING-2023-11-05_19:41:09.890796_EST.calcnb — Score: 11/39
+</h3><h2 id="midterm-1-notebook-2a-command-correctness-46">Midterm 1 Notebook 2A: Command Correctness — (≈ 46%)</h2>
+<br>
+<p>The setup here has <strong>integers</strong> in addition to the setup of A1.3, that is, sequences and <strong>command correctness</strong> material. The <code>head</code> and <code>tail</code> material from A1.3 is included here, too:</p>
+<pre><code>Declaration: head : Seq A → A
+Declaration: tail : Seq A → Seq A
+Axiom “Definition of `head`”: head (x ◃ xs) = x
+Axiom “Definition of `tail`”: tail (x ◃ xs) = xs
+Theorem “Non-empty-sequence extensionality”:
+    xs ≠ 𝜖 ⇒ xs = head xs ◃ tail xs</code></pre>
+<p>Four hint items per hint are allowed here; <code>Evaluation</code> is ensabled.</p>
+<br>
+<p>We provide an additional function for summing up the elements of sequences of natural numbers; for example:</p>
+<pre><code>    sum (3 ◃ 5 ◃ 1 ◃ 𝜖) = 9</code></pre>
+<br>
+<div style="border: 3px outset #e8C080; padding: 0px 12px;">
+<pre><code>1:  Declaration: sum : Seq ℤ → ℤ
+2:  Axiom “Definition of `sum` for 𝜖”: sum 𝜖 = 0
+3:  Axiom “Definition of `sum` for ◃”: sum (x ◃ xs) = x + sum xs</code></pre>
+</div>
+<br>
+<b>Declaration</b><b>: </b><span class="op">sum</span> : <span class="op">Seq</span> <span class="op"></span> <span class="op">ℤ</span> <span class="op">→</span> <span class="op">ℤ</span>
+<br>
+<b>Top-Level Reports:</b>
+<br>
+<span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Found assigned item: Declaration sum: Seq ℤ → ℤ</span>
+<br>
+
+<br>
+<b><span class="ConjStatusAxiom">Axiom</span> “Definition of `sum` for 𝜖”:</b> <span class="op">sum</span> <span class="op"></span> <span class="op">𝜖</span> <span class="op">=</span> 0
+<br>
+<b>Top-Level Reports:</b>
+<br>
+<span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Found assigned item: Axiom “Definition of `sum` for 𝜖”: sum 𝜖 = 0</span>
+<br>
+
+<br>
+<b><span class="ConjStatusAxiom">Axiom</span> “Definition of `sum` for ◃”:</b> <span class="op">sum</span> <span class="op"></span> (<span class="var">x</span> <span class="op">◃</span> <span class="var">xs</span>) <span class="op">=</span> <span class="var">x</span> <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs</span>
+<br>
+<b>Top-Level Reports:</b>
+<br>
+<span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Found assigned item: Axiom “Definition of `sum` for ◃”: sum (x ◃ xs) = x + sum xs</span>
+<br>
+
+<br>
+<p>For warm-up, prove the following:</p>
+<br>
+<div style="border: 3px outset #e8C080; padding: 0px 12px;">
+<pre><code> 1:  Theorem (SQ): ∃ k • ∃ m • sum (k · k ◃ m · m ◃ 𝜖) = 25
+ 2:  Proof:
+ 3:      ∃ k • ∃ m • sum (k · k ◃ m · m ◃ 𝜖) = 25
+ 4:    ⇐⟨ “∃-Introduction” ⟩
+ 5:      (∃ m • sum (k · k ◃ m · m ◃ 𝜖) = 25)[k ≔ 4]
+ 6:    =⟨ Substitution ⟩
+ 7:      ∃ m • (sum (4 · 4 ◃ m · m ◃ 𝜖) = 25)
+ 8:    =⟨ Fact `4 · 4 = 16` ⟩
+ 9:      ∃ m • (sum (16 ◃ m · m ◃ 𝜖) = 25)
+10:    ⇐⟨ “∃-Introduction” ⟩
+11:      (sum (16 ◃ m · m ◃ 𝜖) = 25)[m ≔ 3]
+12:    =⟨ Substitution ⟩
+13:      sum (16 ◃ 3 · 3 ◃ 𝜖) = 25
+14:    =⟨ Fact `3 · 3 = 9` ⟩
+15:      sum (16 ◃ 9 ◃ 𝜖) = 25
+16:    ≡⟨ “Definition of `sum` for ◃” ⟩
+17:      16 + sum (9 ◃ 𝜖) = 25
+18:    ≡⟨ “Definition of `sum` for ◃” ⟩
+19:      16 + 9 + sum (𝜖) = 25
+20:    ≡⟨ “Definition of `sum` for 𝜖” ⟩
+21:      16 + 9 + 0 = 25
+22:    =⟨ Fact `16 + 9 + 0 = 25` ⟩
+23:      25 = 25
+24:    ≡⟨ “Reflexivity of =” ⟩
+25:      true</code></pre>
+</div>
+<br>
+<b><span class="ConjStatusProven">Theorem</span> (SQ):</b> (<span class="op">∃</span> <span class="var">k</span> • (<span class="op">∃</span> <span class="var">m</span> • <span class="op">sum</span> <span class="op"></span> (<span class="var">k</span> <span class="op">·</span> <span class="var">k</span> <span class="op">◃</span> (<span class="var">m</span> <span class="op">·</span> <span class="var">m</span> <span class="op">◃</span> <span class="op">𝜖</span>)) <span class="op">=</span> 25 ) )
+<br>
+<b>Proof:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <strong><span class="ConjStatusProven">Proving</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;`(<span class="op">∃</span> <span class="var">k</span> • (<span class="op">∃</span> <span class="var">m</span> • <span class="op">sum</span> <span class="op"></span> (<span class="var">k</span> <span class="op">·</span> <span class="var">k</span> <span class="op">◃</span> (<span class="var">m</span> <span class="op">·</span> <span class="var">m</span> <span class="op">◃</span> <span class="op">𝜖</span>)) <span class="op">=</span> 25 ) )`:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (<span class="op">∃</span> <span class="var">k</span> • (<span class="op">∃</span> <span class="var">m</span> • <span class="op">sum</span> <span class="op"></span> (<span class="var">k</span> <span class="op">·</span> <span class="var">k</span> <span class="op">◃</span> (<span class="var">m</span> <span class="op">·</span> <span class="var">m</span> <span class="op">◃</span> <span class="op">𝜖</span>)) <span class="op">=</span> 25 ) )
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">⇐</span> <span class="HBConjStatusProven">⟨</span> “∃-Introduction” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="`P[x ≔ E] ⇒ (∃ x • P )`">(9.28) “∃-Introduction”</span></span>, <span class="ConjStatusProven"><span title="`(R ∧ P)[x ≔ E] ⇒ (∃ x ❙ R • P )`">(9.28.1) “∃-Introduction”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (<span class="op">∃</span> <span class="var">m</span> • <span class="op">sum</span> <span class="op"></span> (<span class="var">k</span> <span class="op">·</span> <span class="var">k</span> <span class="op">◃</span> (<span class="var">m</span> <span class="op">·</span> <span class="var">m</span> <span class="op">◃</span> <span class="op">𝜖</span>)) <span class="op">=</span> 25 )[<span class="var">k</span> ≔ 4]
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">=</span> <span class="HBConjStatusProven">⟨</span> Substitution <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (<span class="op">∃</span> <span class="var">m</span> • <span class="op">sum</span> <span class="op"></span> (4 <span class="op">·</span> 4 <span class="op">◃</span> (<span class="var">m</span> <span class="op">·</span> <span class="var">m</span> <span class="op">◃</span> <span class="op">𝜖</span>)) <span class="op">=</span> 25 )
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">=</span> <span class="HBConjStatusProven">⟨</span> <span class="ConjStatusProven">Fact </span>`4 <span class="op">·</span> 4 <span class="op">=</span> 16` <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (<span class="op">∃</span> <span class="var">m</span> • <span class="op">sum</span> <span class="op"></span> (16 <span class="op">◃</span> (<span class="var">m</span> <span class="op">·</span> <span class="var">m</span> <span class="op">◃</span> <span class="op">𝜖</span>)) <span class="op">=</span> 25 )
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">⇐</span> <span class="HBConjStatusProven">⟨</span> “∃-Introduction” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="`P[x ≔ E] ⇒ (∃ x • P )`">(9.28) “∃-Introduction”</span></span>, <span class="ConjStatusProven"><span title="`(R ∧ P)[x ≔ E] ⇒ (∃ x ❙ R • P )`">(9.28.1) “∃-Introduction”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (<span class="op">sum</span> <span class="op"></span> (16 <span class="op">◃</span> (<span class="var">m</span> <span class="op">·</span> <span class="var">m</span> <span class="op">◃</span> <span class="op">𝜖</span>)) <span class="op">=</span> 25)[<span class="var">m</span> ≔ 3]
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">=</span> <span class="HBConjStatusProven">⟨</span> Substitution <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">sum</span> <span class="op"></span> (16 <span class="op">◃</span> (3 <span class="op">·</span> 3 <span class="op">◃</span> <span class="op">𝜖</span>)) <span class="op">=</span> 25
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">=</span> <span class="HBConjStatusProven">⟨</span> <span class="ConjStatusProven">Fact </span>`3 <span class="op">·</span> 3 <span class="op">=</span> 9` <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">sum</span> <span class="op"></span> (16 <span class="op">◃</span> (9 <span class="op">◃</span> <span class="op">𝜖</span>)) <span class="op">=</span> 25
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Definition of `sum` for ◃” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`sum  (x ◃ xs) = x + sum  xs`">“Definition of `sum` for ◃”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 16 <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> (9 <span class="op">◃</span> <span class="op">𝜖</span>) <span class="op">=</span> 25
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Definition of `sum` for ◃” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`sum  (x ◃ xs) = x + sum  xs`">“Definition of `sum` for ◃”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (16 <span class="op">+</span> 9) <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> <span class="op">𝜖</span> <span class="op">=</span> 25
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Definition of `sum` for 𝜖” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`sum  𝜖 = 0`">“Definition of `sum` for 𝜖”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (16 <span class="op">+</span> 9) <span class="op">+</span> 0 <span class="op">=</span> 25
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">=</span> <span class="HBConjStatusProven">⟨</span> <span class="ConjStatusProven">Fact </span>`(16 <span class="op">+</span> 9) <span class="op">+</span> 0 <span class="op">=</span> 25` <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 25 <span class="op">=</span> 25
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Reflexivity of =” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`x = x`">(1.2) “Reflexivity of =”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">true</span>
+&nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">All steps OK</span>&nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Calculation matches goal ─ OK</span>
+
+<br>
+<b>Top-Level Reports:</b>
+<br>
+<span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Found assigned item: Theorem (SQ): (∃ k • (∃ m • sum (k · k ◃ (m · m ◃ 𝜖)) = 25 ) )</span>
+<br>
+<span class="RKInfo"> &mdash; CalcCheck: </span><span class="RKInfo">(You have “proof length” 12; it is possible to have “proof length” 8.)</span>
+<br>
+<span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Proof of Theorem (SQ): (∃ k • (∃ m • sum  (k · k ◃ (m · m ◃ 𝜖)) = 25 ) ) appears to be correct: 9/9</span>
+<br>
+
+<br>
+<p>A linear-time imperative implementation of <code>sum</code> of sequences that are implemented as singly-linked lists can be achieved via a loop with the following program:</p>
+<pre><code>    xs := xs₀ ⍮
+    s := 0 ⍮
+    while xs ≠ 𝜖 do
+        s := s + head xs ⍮
+        xs := tail xs
+    od</code></pre>
+<p>The following theorems constitute part of proving this correct with respect to the following postcondition:</p>
+<pre><code>    s = sum xs₀</code></pre>
+<br>
+<p>For the proofs, proceeding “backwards” as in Ex3.7 is recommended; this means that you will have a sequence of steps using calculation operators of the following shapes:</p>
+<ul>
+<li><code>⁅ _ := _ ⁆⇐</code></li>
+<li><code>⇐</code></li>
+<li><code>≡</code></li>
+</ul>
+<p>Each of these needs to be justified by a hint enclosed in <code>⟨</code> … <code>⟩</code> as usual, for example:</p>
+<pre><code>      a = 42
+    ⁅ a := 7 · 8 ⁆⇐   ⟨ “Assignment” with substitution ⟩
+      7 · 8 = 42
+    ⇐                 ⟨ “ex falso quodlibet” ⟩
+      false</code></pre>
+<p>You should not need additional lemmas.</p>
+<br>
+<div style="border: 3px outset #e8C080; padding: 0px 12px;">
+<pre><code> 1:  Theorem “Initialisation for `Sum`”:
+ 2:        true
+ 3:      ⇒⁅ xs := xs₀ ⍮ s := 0 ⁆
+ 4:        s + sum xs = sum xs₀
+ 5:  Proof:
+ 6:      true
+ 7:    ≡⟨ “Reflexivity of =” ⟩
+ 8:      xs = s
+ 9:    ⇐⟨ “Assignment” with Substitution ⟩
+10:      xs = s[xs ≔ xs₀]</code></pre>
+</div>
+<br>
+<b><span class="ConjStatusOpen">Theorem</span> “Initialisation for `Sum`”:</b> <span class="op">true</span> <span class="op">⇒⁅</span> (<span class="var">xs</span> <span class="op">:=</span> <span class="var">xs₀</span> <span class="op">⍮</span> <span class="var">s</span> <span class="op">:=</span> 0) <span class="op">⁆</span> <span class="var">s</span> <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs</span> <span class="op">=</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs₀</span>
+<br>
+<b>Proof:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <strong><span class="ConjStatusOpen">Proving</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;`<span class="op">true</span> <span class="op">⇒⁅</span> (<span class="var">xs</span> <span class="op">:=</span> <span class="var">xs₀</span> <span class="op">⍮</span> <span class="var">s</span> <span class="op">:=</span> 0) <span class="op">⁆</span> <span class="var">s</span> <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs</span> <span class="op">=</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs₀</span>`:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">true</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusOpen">⟨</span> “Reflexivity of =” <span class="HBConjStatusOpen">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`x = x`">(1.2) “Reflexivity of =”</span></span></span><span class="RKTypeErr">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Unification of [](Seq  ℤ) with [](ℤ) clashes!
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; While type-checking `xs = s`: 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Empty type options for binary operator `_=_`!
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Possible types of the operator `_=_`:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   A᎑₂₇ → (A᎑₂₇ → 𝔹)
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Possible types of the first argument `xs` (with type assignments to variables):
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   Seq  ℤ,  with  [s : ℤ, xs : Seq  ℤ, xs₀ : Seq  ℤ]
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Possible types of the second argument `s` (with type assignments to variables):
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   ℤ,  with  [s : ℤ, xs : Seq  ℤ, xs₀ : Seq  ℤ]</span><span class="RKInconclusive">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Due to type error, calculation step cannot be checked.</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="var">xs</span> <span class="op">=</span> <span class="var">s</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">⇐</span> <span class="HBConjStatusOpen">⟨</span> “Assignment” with Substitution <span class="HBConjStatusOpen">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="(/\ x•`Φ ≡ Ψ[x ≔ E]`⊦`Φ ⇒⁅ (x := E) ⁆ Ψ`)">“Assignment”</span></span>, <span class="ConjStatusAxiom"><span title="`P[x ≔ E] ⇒⁅ (x := E) ⁆ P`">“Assignment”</span></span></span><span class="RKTypeErr">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Unification of [](Seq  ℤ) with [](ℤ) clashes!
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; While type-checking `xs = s[xs ≔ xs₀]`: 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Empty type options for binary operator `_=_`!
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Possible types of the operator `_=_`:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   A᎑₃₇ → (A᎑₃₇ → 𝔹)
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Possible types of the first argument `xs` (with type assignments to variables):
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   Seq  ℤ,  with  [s : ℤ, xs : Seq  ℤ, xs₀ : Seq  ℤ]
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Possible types of the second argument `s[xs ≔ xs₀]` (with type assignments to variables):
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   ℤ,  with  [s : ℤ, xs₀ : Seq  ℤ]</span><span class="RKInconclusive">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Due to type error, calculation step cannot be checked.</span><span class="RKInfo">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: The 2 steps (“proof length”: 3) up to here attempt to prove `true ⇐ xs = s[xs ≔ xs₀]`, which could be shown by “Right-zero of ⇒” in a single step!</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="var">xs</span> <span class="op">=</span> <span class="var">s</span>[<span class="var">xs</span> ≔ <span class="var">xs₀</span>]
+&nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; <span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">2 out of 2 steps not justified</span>&nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; <span class="RKCheckFailed"> &mdash; CalcCheck: </span><span class="RKCheckFailed">Could not match calculation with stated goal.</span>
+
+<br>
+<b>Top-Level Reports:</b>
+<br>
+<span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Found assigned item: Theorem “Initialisation for `Sum`”: true ⇒⁅ (xs := xs₀ ⍮ s := 0) ⁆ s + sum xs = sum xs₀</span>
+<br>
+<span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">Flawed proof attempt for: Theorem “Initialisation for `Sum`”: true ⇒⁅ (xs := xs₀ ⍮ s := 0) ⁆ s + sum  xs = sum  xs₀: 0/7</span>
+<br>
+
+<br>
+<div style="border: 3px outset #e8C080; padding: 0px 12px;">
+<pre><code> 1:  Theorem “Postcondition for `Sum`”:
+ 2:        ¬ (xs ≠ 𝜖) ∧ s + sum xs = sum xs₀
+ 3:      ⇒ s = sum xs₀
+ 4:  Proof:
+ 5:      ¬ (xs ≠ 𝜖) ∧ s + sum xs = sum xs₀
+ 6:    ≡⟨ “Cons is not empty” ⟩
+ 7:      ¬ false ∧ s + sum xs = sum xs₀
+ 8:    ≡⟨ “Negation of `false`” ⟩
+ 9:      true ∧ s + sum xs = sum xs₀
+10:    ≡⟨ “Identity of ∧” ⟩
+11:      s + sum xs = sum xs₀</code></pre>
+</div>
+<br>
+<b><span class="ConjStatusOpen">Theorem</span> “Postcondition for `Sum`”:</b> <span class="op">¬</span> (<span class="var">xs</span> <span class="op">≠</span> <span class="op">𝜖</span>) <span class="op">∧</span> <span class="var">s</span> <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs</span> <span class="op">=</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs₀</span> <span class="op">⇒</span> <span class="var">s</span> <span class="op">=</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs₀</span>
+<br>
+<b>Proof:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <strong><span class="ConjStatusOpen">Proving</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;`<span class="op">¬</span> (<span class="var">xs</span> <span class="op">≠</span> <span class="op">𝜖</span>) <span class="op">∧</span> <span class="var">s</span> <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs</span> <span class="op">=</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs₀</span> <span class="op">⇒</span> <span class="var">s</span> <span class="op">=</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs₀</span>`:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">¬</span> (<span class="var">xs</span> <span class="op">≠</span> <span class="op">𝜖</span>) <span class="op">∧</span> <span class="var">s</span> <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs</span> <span class="op">=</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs₀</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusOpen">⟨</span> “Cons is not empty” <span class="HBConjStatusOpen">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="`x ◃ xs = 𝜖 ≡ false`">“Cons is not empty”</span></span>, <span class="ConjStatusAxiom"><span title="`x ◃ xs ≠ 𝜖`">(13.3) “Cons is not empty”</span></span></span><span class="RKInconclusive">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Could not justify this step!</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">¬</span> <span class="op">false</span> <span class="op">∧</span> <span class="var">s</span> <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs</span> <span class="op">=</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs₀</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Negation of `false`” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="`¬ false ≡ true`">(3.13) “Negation of `false`”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">true</span> <span class="op">∧</span> <span class="var">s</span> <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs</span> <span class="op">=</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs₀</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Identity of ∧” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="`p ∧ true ≡ p`">(3.39) “Identity of ∧”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="var">s</span> <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs</span> <span class="op">=</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs₀</span>
+&nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; <span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">1 out of 3 steps not justified</span>&nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; <span class="RKCheckFailed"> &mdash; CalcCheck: </span><span class="RKCheckFailed">Could not match calculation with stated goal.</span>
+
+<br>
+<b>Top-Level Reports:</b>
+<br>
+<span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Found assigned item: Theorem “Postcondition for `Sum`”: ¬ (xs ≠ 𝜖) ∧ s + sum xs = sum xs₀ ⇒ s = sum xs₀</span>
+<br>
+<span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">Flawed proof attempt for: Theorem “Postcondition for `Sum`”: ¬ (xs ≠ 𝜖) ∧ s + sum  xs = sum  xs₀ ⇒ s = sum  xs₀: 2/10</span>
+<br>
+
+<br>
+<div style="border: 3px outset #e8C080; padding: 0px 12px;">
+<pre><code> 1:  Theorem “Invariant for `Sum`”:
+ 2:        xs ≠ 𝜖 ∧ s + sum xs = sum xs₀
+ 3:      ⇒⁅ s := s + head xs ⍮ xs := tail xs ⁆
+ 4:        s + sum xs = sum xs₀
+ 5:  Proof:
+ 6:      xs ≠ 𝜖 ∧ s + sum xs = sum xs₀ 
+ 7:    ≡⟨ “Assignment” ⟩
+ 8:      xs ≠ 𝜖 ∧ s + sum xs = sum xs₀[s ≔ s + head xs]
+ 9:    ≡⟨ Substitution ⟩
+10:      xs ≠ 𝜖 ∧ s + sum xs = sum xs₀
+11:    ≡⟨ “Assignment” ⟩
+12:         
+13:    ≡⟨ Substitution ⟩
+14:      s + sum xs = sum xs₀</code></pre>
+</div>
+<br>
+<b><span class="ConjStatusOpen">Theorem</span> “Invariant for `Sum`”:</b> <span class="var">xs</span> <span class="op">≠</span> <span class="op">𝜖</span> <span class="op">∧</span> <span class="var">s</span> <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs</span> <span class="op">=</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs₀</span> <span class="op">⇒⁅</span> (<span class="var">s</span> <span class="op">:=</span> <span class="var">s</span> <span class="op">+</span> <span class="op">head</span> <span class="op"></span> <span class="var">xs</span> <span class="op">⍮</span> <span class="var">xs</span> <span class="op">:=</span> <span class="op">tail</span> <span class="op"></span> <span class="var">xs</span>) <span class="op">⁆</span> <span class="var">s</span> <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs</span> <span class="op">=</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs₀</span>
+<br>
+<b>Proof:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <strong><span class="ConjStatusOpen">Proving</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;`<span class="var">xs</span> <span class="op">≠</span> <span class="op">𝜖</span> <span class="op">∧</span> <span class="var">s</span> <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs</span> <span class="op">=</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs₀</span> <span class="op">⇒⁅</span> (<span class="var">s</span> <span class="op">:=</span> <span class="var">s</span> <span class="op">+</span> <span class="op">head</span> <span class="op"></span> <span class="var">xs</span> <span class="op">⍮</span> <span class="var">xs</span> <span class="op">:=</span> <span class="op">tail</span> <span class="op"></span> <span class="var">xs</span>) <span class="op">⁆</span> <span class="var">s</span> <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs</span> <span class="op">=</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs₀</span>`:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="var">xs</span> <span class="op">≠</span> <span class="op">𝜖</span> <span class="op">∧</span> <span class="var">s</span> <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs</span> <span class="op">=</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs₀</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusOpen">⟨</span> “Assignment” <span class="HBConjStatusOpen">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="(/\ x•`Φ ≡ Ψ[x ≔ E]`⊦`Φ ⇒⁅ (x := E) ⁆ Ψ`)">“Assignment”</span></span>, <span class="ConjStatusAxiom"><span title="`P[x ≔ E] ⇒⁅ (x := E) ⁆ P`">“Assignment”</span></span></span><span class="RKInfo">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: A cycle of length 2 begins here.</span><span class="RKInconclusive">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Could not justify this step!</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="var">xs</span> <span class="op">≠</span> <span class="op">𝜖</span> <span class="op">∧</span> <span class="var">s</span> <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs</span> <span class="op">=</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs₀</span>[<span class="var">s</span> ≔ <span class="var">s</span> <span class="op">+</span> <span class="op">head</span> <span class="op"></span> <span class="var">xs</span>]
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> Substitution <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="var">xs</span> <span class="op">≠</span> <span class="op">𝜖</span> <span class="op">∧</span> <span class="var">s</span> <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs</span> <span class="op">=</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs₀</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusOpen">⟨</span> “Assignment” <span class="HBConjStatusOpen">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="(/\ x•`Φ ≡ Ψ[x ≔ E]`⊦`Φ ⇒⁅ (x := E) ⁆ Ψ`)">“Assignment”</span></span>, <span class="ConjStatusAxiom"><span title="`P[x ≔ E] ⇒⁅ (x := E) ⁆ P`">“Assignment”</span></span></span><span class="RKInconclusive">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Due to parse error in the expression below, this calculation step cannot be checked.</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color="#FF0000">⟪ expecting «expression»! ⟫</font>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusOpen">⟨</span> Substitution <span class="HBConjStatusOpen">⟩</span><span class="RKInconclusive">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Due to parse error in the expression above, this calculation step cannot be checked.</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="var">s</span> <span class="op">+</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs</span> <span class="op">=</span> <span class="op">sum</span> <span class="op"></span> <span class="var">xs₀</span>
+&nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; <span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">3 out of 4 steps not justified</span>&nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; <span class="RKCheckFailed"> &mdash; CalcCheck: </span><span class="RKCheckFailed">Could not match calculation with stated goal.</span>
+
+<br>
+<b>Top-Level Reports:</b>
+<br>
+<span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Found assigned item: Theorem “Invariant for `Sum`”: xs ≠ 𝜖 ∧ s + sum xs = sum xs₀ ⇒⁅ (s := s + head xs ⍮ xs := tail xs) ⁆ s + sum xs = sum xs₀</span>
+<br>
+<span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">Flawed proof attempt for: Theorem “Invariant for `Sum`”: xs ≠ 𝜖 ∧ s + sum  xs = sum  xs₀ ⇒⁅ (s := s + head  xs ⍮ xs := tail  xs) ⁆ s + sum  xs = sum  xs₀: 0/13</span>
+<br>
+
+<br>
+<h2 id="concluding-declarations">Concluding Declarations</h2>
+<br>
+<p>Your answers above are completely your own work? (“No answer” is wrong.)</p>
+<ul>
+<li><input type="radio" name="A1IEnd" id="A1IEnd_MCQItem_1" height="2em" width="2em" value="1" checked><label for="A1IEnd_MCQItem_1" id="A1IEnd_MCQLabel_1"> &nbsp;Yes</label></li>
+<li><input type="radio" name="A1IEnd" id="A1IEnd_MCQItem_2" height="2em" width="2em" value="2"><label for="A1IEnd_MCQItem_2" id="A1IEnd_MCQLabel_2"> &nbsp;No</label></li>
+</ul>
+<br>
+<b>Top-Level Reports:</b>
+<br>
+<span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Found assigned item: MCQ A1IEnd</span>
+<br>
+<span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Question A1IEnd answered correctly: 0/0</span>
+<br>
+
+<br>
+<p>The text box below is the <strong>report box</strong>: If you want to leave us any message(s) that will be read when we mark the midterm, please select “Yes” here and write your message(s) in the <strong>text box below</strong>, by hitting <code>ENTER</code> with focus on that box.</p>
+<ul>
+<li><input type="radio" name="qA1ReportBox" id="qA1ReportBox_MCQItem_1" height="2em" width="2em" value="1" checked><label for="qA1ReportBox_MCQItem_1" id="qA1ReportBox_MCQLabel_1"> &nbsp;Yes, I have entered messages below.</label></li>
+<li><input type="radio" name="qA1ReportBox" id="qA1ReportBox_MCQItem_2" height="2em" width="2em" value="2"><label for="qA1ReportBox_MCQItem_2" id="qA1ReportBox_MCQLabel_2"> &nbsp;No, there are no relevant messages below.</label></li>
+</ul>
+<p>(The text boxes allow Markdown; hit <code>Ctrl-ENTER</code> to see the layout result.)</p>
+<br>
+<b>Top-Level Reports:</b>
+<br>
+<span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Found assigned item: MCQ qA1ReportBox</span>
+<br>
+<span class="RKInfo"> &mdash; CalcCheck: </span><span class="RKInfo">Report box signalled.</span>
+<br>
+
+<br>
+<p><strong>Report box:</strong> Add your messages here (after hitting <code>ENTER</code> on this box).</p>
+<p>I kindly ask the TA marking this to please look at the cells and what they contain even though they might have a parse error. Thank you!</p>
+<br>
+<b>Top-Level Reports:</b>
+<br>
+<div class="RKPersReport"><span class="RKPersReport">Personal message:</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKPersReport">Even with the help of the text cell before Theorem “Initialisation for <code>Sum</code>”, you did not even try to prove correctness statements in “Initialisation for <code>Sum</code>” and in “Invariant for <code>Sum</code>”.</span></div>
+<br>
+
+</body>
+</html>
+

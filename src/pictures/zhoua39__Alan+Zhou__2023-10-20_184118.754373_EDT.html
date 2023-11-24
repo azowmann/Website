@@ -1,0 +1,778 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head><title>M1/Midterm-1-1A_NatMaxMin/zhoua39__Alan+Zhou/zhoua39__Alan+Zhou__2023-10-20_18:41:18.754373_EDT.calcnb checked by CalcCheck-0.4.0.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<style  type="text/css">
+<!--
+.var { color: #000088; }
+.op  { color: #664400; }
+.ConjStatusAxiom{ color: #075; }
+.ConjStatusProven{ color: #070; }
+.ConjStatusOpen{ color: #800; }
+.ConjStatusRelative{ color: #770; }
+.HBConjStatusAxiom{ font-weight:900; font-size:112%; color:#075; }
+.HBConjStatusProven{ font-weight:900; font-size:112%; color:#070; }
+.HBConjStatusOpen{ font-weight:900; font-size:112%; color:#800; }
+.HBConjStatusRelative{ font-weight:900; font-size:112%; color:#770; }
+.TRConjStatusAxiom{ text-decoration: #075 20% underline; underline; }
+.ARConjStatusAxiom{ text-decoration: #075 15% underline; underline; }
+
+.TRConjStatusProven{ text-decoration: #070 20% underline; underline; }
+.ARConjStatusProven{ text-decoration: #070 15% underline; underline; }
+
+.TRConjStatusOpen{ text-decoration: #800 20% underline; underline; }
+.ARConjStatusOpen{ text-decoration: #800 wavy 10% underline; underline; }
+
+.TRConjStatusRelative{ text-decoration: #770 20% underline; underline; }
+.ARConjStatusRelative{ text-decoration: #770 15% underline; underline; }
+
+.RKInternalErr{ color: #AA0000; }
+.RKImportErr{ color: #AA0000; }
+.RKParseErr{ color: #FF0000; }
+.RKTypeErr{ color: #FF8800; }
+.RKInvalid{ color: #D00000; }
+.RKViolation{ color: #FF0088; }
+.RKDefect{ color: #DD4400; }
+.RKEmptyHint{ color: #B80000; }
+.RKCheckFailed{ color: #AA0000; }
+.RKCheckTimedOut{ color: #BB0000; }
+.RKInconclusive{ color: #AA0000; }
+.RKPoor{ color: #EE8866; }
+.RKWarning{ color: #AA0099; }
+.RKNotImpl{ color: #888888; }
+.RKInfo{ color: #005599; }
+.RKProviso{ color: #006699; }
+.RKOppositeImpl{ color: #DD0077; }
+.RKPersReport{ color: #BB00DD; }
+.RKNoChange{ color: #447700; }
+.RKConfirmedOK{ color: #008000; }
+-->
+</style>
+</head>
+<body style="line-height:130%" bgcolor="#FFFFFF">
+
+<h3>zhoua39__Alan+Zhou__2023-10-20_18:41:18.754373_EDT.calcnb — Score: 37/42
+</h3><h2 id="midterm-1-notebook-1a-natural-induction-54">Midterm 1 Notebook 1A: Natural Induction — (≈54%)</h2>
+<br>
+<p><strong>Natural number</strong> material up to and including more order material than A1.2 is preloaded here, including activation of symmetry and associativity properties.</p>
+<p>In addition we have maximum and minimum operators <code>↑</code> (type <code>\max</code> or <code>\up</code>) and <code>↓</code> (type <code>\mini</code> or <code>\down</code>) <strong>on the natural numbers</strong>, defined as follows:</p>
+<pre><code>Axiom “Left-zero of ↓”
+      “Definition of ↓ for 0”:      0 ↓ n = 0
+Axiom “Right-zero of ↓”
+      “Definition of ↓ for 0”:      m ↓ 0 = 0
+Axiom “Distributivity of `suc` over ↓”
+      “Definition of ↓ for `suc`”:   (suc m) ↓ (suc n) = suc (m ↓ n)
+
+Axiom “Left-identity of ↑”
+      “Definition of ↑ for 0”:      0 ↑ n = n
+Axiom “Right-identity of ↑”
+      “Definition of ↑ for 0”:      m ↑ 0 = m
+Axiom “Distributivity of `suc` over ↑”
+      “Definition of ↑ for `suc`”:  (suc m) ↑ (suc n) = suc (m ↑ n)</code></pre>
+<p>Symmetry and associativity of <code>↑</code> and <code>↓</code> are activated, but nothing else about these operators is preloaded.</p>
+<p>(The <strong>integer</strong> maximum and minimum material from Ex5.3 is <strong>not</strong> usable on ℕ, the type of <strong>natural numbers</strong>!)</p>
+<br>
+<div style="border: 3px outset #e8C080; padding: 0px 12px;">
+<pre><code> 1:  Theorem “Minimum with addition”: k ↓ (k + n) = k
+ 2:  Proof:
+ 3:    By induction on `k : ℕ`:
+ 4:      Base case:
+ 5:          0 ↓ (0 + n) = 0
+ 6:        =⟨ “Identity of +” ⟩
+ 7:          0 ↓ n = 0
+ 8:        =⟨ “Definition of ↓ for 0” ⟩
+ 9:          true
+10:      Induction step:
+11:          By induction on `n : ℕ`:
+12:            Base case:
+13:                suc k ↓ (suc k + 0) = suc k
+14:              =⟨ “Identity of +” ⟩
+15:                suc k ↓ suc k = suc k
+16:              =⟨ “Definition of ↓ for `suc`” ⟩
+17:                suc (k ↓ k) = suc k
+18:              =⟨ “Reflexivity of =” ⟩
+19:                true
+20:                </code></pre>
+</div>
+<br>
+<b><span class="ConjStatusOpen">Theorem</span> “Minimum with addition”:</b> <span class="var">k</span> <span class="op">↓</span> <span class="var">k</span> <span class="op">+</span> <span class="var">n</span> <span class="op">=</span> <span class="var">k</span>
+<br>
+<b>Proof:</b>
+<br>
+&nbsp; &nbsp; <b><span class="ConjStatusOpen">By induction</span> on `<span class="var">k</span> : <span class="op">ℕ</span>`:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><span class="ConjStatusProven">Base case</span>:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong><span class="ConjStatusProven">Proving</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;`0 <span class="op">↓</span> 0 <span class="op">+</span> <span class="var">n</span> <span class="op">=</span> 0`:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0 <span class="op">↓</span> 0 <span class="op">+</span> <span class="var">n</span> <span class="op">=</span> 0
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">=</span> <span class="HBConjStatusProven">⟨</span> “Identity of +” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="`0 + a = a`">“Identity of +”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0 <span class="op">↓</span> <span class="var">n</span> <span class="op">=</span> 0
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">=</span> <span class="HBConjStatusProven">⟨</span> “Definition of ↓ for 0” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`m ↓ 0 = 0`">“Right-zero of ↓”</span></span>, <span class="ConjStatusAxiom"><span title="`0 ↓ n = 0`">“Left-zero of ↓”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">true</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">All steps OK</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Calculation matches goal ─ OK</span>
+
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><span class="ConjStatusOpen">Induction step</span>:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><span class="ConjStatusOpen">By induction</span> on `<span class="var">n</span> : <span class="op">ℕ</span>`:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><span class="ConjStatusOpen">Base case</span>:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong><span class="ConjStatusOpen">Proving</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;`<span class="op">suc</span> <span class="var">k</span> <span class="op">↓</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">+</span> 0 <span class="op">=</span> <span class="op">suc</span> <span class="var">k</span>`:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">suc</span> <span class="var">k</span> <span class="op">↓</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">+</span> 0 <span class="op">=</span> <span class="op">suc</span> <span class="var">k</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">=</span> <span class="HBConjStatusProven">⟨</span> “Identity of +” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="`0 + a = a`">“Identity of +”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">suc</span> <span class="var">k</span> <span class="op">↓</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">=</span> <span class="op">suc</span> <span class="var">k</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">=</span> <span class="HBConjStatusProven">⟨</span> “Definition of ↓ for `suc`” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`suc m ↓ suc n = suc (m ↓ n)`">“Distributivity of `suc` over ↓”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">suc</span> (<span class="var">k</span> <span class="op">↓</span> <span class="var">k</span>) <span class="op">=</span> <span class="op">suc</span> <span class="var">k</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">=</span> <span class="HBConjStatusOpen">⟨</span> “Reflexivity of =” <span class="HBConjStatusOpen">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`x = x`">(1.2) “Reflexivity of =”</span></span></span><span class="RKInconclusive">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Could not justify this step!</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">true</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">1 out of 3 steps not justified</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Calculation matches goal ─ OK</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKInvalid"> &mdash; CalcCheck: </span><span class="RKInvalid">Induction step missing!</span>&nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Base case and induction step both present</span>&nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; <span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">Induction proof not fully justified:</span>&nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; <span class="RKInvalid"> &mdash; CalcCheck: </span><span class="RKInvalid">one invalid assertion</span>&nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; <span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">one inconclusive check</span>
+<br>
+<b>Top-Level Reports:</b>
+<br>
+<span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Found assigned item: Theorem “Minimum with addition”: k ↓ k + n = k</span>
+<br>
+<span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">Flawed proof attempt for: Theorem “Minimum with addition”: k ↓ k + n = k: 5/7</span>
+<br>
+
+<br>
+<div style="border: 3px outset #e8C080; padding: 0px 12px;">
+<pre><code> 1:  Theorem “At most via maximum”:  k ≤ n  ⇒  k ↑ n = n
+ 2:  Proof:
+ 3:    By induction on `k : ℕ`:
+ 4:      Base case:
+ 5:          0 ≤ n ⇒ 0 ↑ n = n
+ 6:        ≡⟨ “Definition of ≤ in terms of &lt;” ⟩
+ 7:          0 &lt; n ∨ 0 = n ⇒ 0 ↑ n = n
+ 8:        ≡⟨ “Zero is &lt;-least element” ⟩
+ 9:          true ⇒ 0 ↑ n = n
+10:        ≡⟨ “Definition of ↑ for 0” ⟩
+11:          true ⇒ n = n
+12:        ≡⟨ “Reflexivity of =” ⟩
+13:          true ⇒ true
+14:        ≡⟨ “Definition of ⇒” ⟩
+15:          ¬ true ∨ true
+16:        ≡⟨ “LEM” ⟩
+17:          true
+18:      Induction step:
+19:        By induction on `n : ℕ`:
+20:          Base case:
+21:              suc k ≤ 0 ⇒ suc k ↑ 0 = 0
+22:            ≡⟨ “Definition of ≤ in terms of &lt;” ⟩
+23:              suc k &lt; 0 ∨ suc k = 0 ⇒ suc k ↑ 0 = 0
+24:            ≡⟨ “Nothing is less than zero” ⟩
+25:              false ∨ suc k = 0 ⇒ suc k ↑ 0 = 0
+26:            ≡⟨ “Zero is not successor” ⟩
+27:              false ∨ false ⇒ suc k ↑ 0 = 0
+28:            ≡⟨ “Idempotency of ∨” ⟩
+29:              false ⇒ (suc k ↑ 0 = 0)
+30:            ≡⟨ “Definition of ⇒” ⟩
+31:              ¬ false ∨ (suc k ↑ 0 = 0)
+32:            ≡⟨ “Negation of `false`” ⟩
+33:              true ∨ (suc k ↑ 0 = 0)
+34:            ≡⟨ “Zero of ∨” ⟩
+35:              true
+36:          Induction step:
+37:              suc k ≤ suc n  ⇒  suc k ↑ suc n = suc n
+38:            ≡⟨ “Definition of ≤ in terms of &lt;” ⟩
+39:              suc k &lt; suc n ∨ suc k = suc n ⇒ suc k ↑ suc n = suc n
+40:            ≡⟨ “&lt;-Isotonicity of successor” ⟩
+41:              k &lt; n ∨ suc k = suc n ⇒ suc k ↑ suc n = suc n
+42:            ≡⟨ “Cancellation of `suc`” ⟩
+43:              k &lt; n ∨ k = n ⇒ suc k ↑ suc n = suc n
+44:            ≡⟨ “Definition of ≤ in terms of &lt;” ⟩
+45:              k ≤ n ⇒ suc k ↑ suc n = suc n
+46:            ≡⟨ “Definition of ↑ for `suc`” ⟩
+47:              k ≤ n ⇒ suc (k ↑ n) = suc n
+48:            ≡⟨ “Cancellation of `suc`” ⟩
+49:              k ≤ n ⇒ k ↑ n = n   — This is induction hypothesis `k ≤ n ⇒ k ↑ n = n`
+50:              
+51:              
+52:              </code></pre>
+</div>
+<br>
+<b><span class="ConjStatusProven">Theorem</span> “At most via maximum”:</b> <span class="var">k</span> <span class="op">≤</span> <span class="var">n</span> <span class="op">⇒</span> <span class="var">k</span> <span class="op">↑</span> <span class="var">n</span> <span class="op">=</span> <span class="var">n</span>
+<br>
+<b>Proof:</b>
+<br>
+&nbsp; &nbsp; <b><span class="ConjStatusProven">By induction</span> on `<span class="var">k</span> : <span class="op">ℕ</span>`:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><span class="ConjStatusProven">Base case</span>:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong><span class="ConjStatusProven">Proving</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;`0 <span class="op">≤</span> <span class="var">n</span> <span class="op">⇒</span> 0 <span class="op">↑</span> <span class="var">n</span> <span class="op">=</span> <span class="var">n</span>`:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0 <span class="op">≤</span> <span class="var">n</span> <span class="op">⇒</span> 0 <span class="op">↑</span> <span class="var">n</span> <span class="op">=</span> <span class="var">n</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Definition of ≤ in terms of &lt;” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="`a ≤ b ≡ a < b ∨ a = b`">“Definition of ≤ in terms of <”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0 <span class="op">&lt;</span> <span class="var">n</span> <span class="op">∨</span> 0 <span class="op">=</span> <span class="var">n</span> <span class="op">⇒</span> 0 <span class="op">↑</span> <span class="var">n</span> <span class="op">=</span> <span class="var">n</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Zero is &lt;-least element” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="`0 < a ∨ 0 = a`">“Zero is <-least element”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">true</span> <span class="op">⇒</span> 0 <span class="op">↑</span> <span class="var">n</span> <span class="op">=</span> <span class="var">n</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Definition of ↑ for 0” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`m ↑ 0 = m`">“Right-identity of ↑”</span></span>, <span class="ConjStatusAxiom"><span title="`0 ↑ n = n`">“Left-identity of ↑”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">true</span> <span class="op">⇒</span> <span class="var">n</span> <span class="op">=</span> <span class="var">n</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Reflexivity of =” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`x = x`">(1.2) “Reflexivity of =”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">true</span> <span class="op">⇒</span> <span class="op">true</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Definition of ⇒” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="`p ⇒ q ≡ ¬ p ∨ q`">(3.59) “Material implication”</span></span>, <span class="ConjStatusProven"><span title="`p ⇒ q ≡ (p ∧ q ≡ p)`">(3.60) “Definition of ⇒ via ∧”</span></span>, <span class="ConjStatusAxiom"><span title="`p ⇒ q ≡ (p ∨ q ≡ q)`">(3.57) “Definition of ⇒ via ∨”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">¬</span> <span class="op">true</span> <span class="op">∨</span> <span class="op">true</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “LEM” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`p ∨ ¬ p`">(3.28) “Excluded middle”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">true</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">All steps OK</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Calculation matches goal ─ OK</span>
+
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><span class="ConjStatusProven">Induction step</span>:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><span class="ConjStatusProven">By induction</span> on `<span class="var">n</span> : <span class="op">ℕ</span>`:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><span class="ConjStatusProven">Base case</span>:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong><span class="ConjStatusProven">Proving</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;`<span class="op">suc</span> <span class="var">k</span> <span class="op">≤</span> 0 <span class="op">⇒</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">↑</span> 0 <span class="op">=</span> 0`:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">suc</span> <span class="var">k</span> <span class="op">≤</span> 0 <span class="op">⇒</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">↑</span> 0 <span class="op">=</span> 0
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Definition of ≤ in terms of &lt;” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="`a ≤ b ≡ a < b ∨ a = b`">“Definition of ≤ in terms of <”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">suc</span> <span class="var">k</span> <span class="op">&lt;</span> 0 <span class="op">∨</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">=</span> 0 <span class="op">⇒</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">↑</span> 0 <span class="op">=</span> 0
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Nothing is less than zero” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`a < 0 ≡ false`">“Nothing is less than zero”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">false</span> <span class="op">∨</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">=</span> 0 <span class="op">⇒</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">↑</span> 0 <span class="op">=</span> 0
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Zero is not successor” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="`0 ≠ suc n`">“Zero is not successor”</span></span>, <span class="ConjStatusAxiom"><span title="`0 = suc n ≡ false`">“Zero is not successor”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">false</span> <span class="op">∨</span> <span class="op">false</span> <span class="op">⇒</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">↑</span> 0 <span class="op">=</span> 0
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Idempotency of ∨” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`p ∨ p ≡ p`">(3.26) “Idempotency of ∨”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">false</span> <span class="op">⇒</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">↑</span> 0 <span class="op">=</span> 0
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Definition of ⇒” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="`p ⇒ q ≡ ¬ p ∨ q`">(3.59) “Material implication”</span></span>, <span class="ConjStatusProven"><span title="`p ⇒ q ≡ (p ∧ q ≡ p)`">(3.60) “Definition of ⇒ via ∧”</span></span>, <span class="ConjStatusAxiom"><span title="`p ⇒ q ≡ (p ∨ q ≡ q)`">(3.57) “Definition of ⇒ via ∨”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">¬</span> <span class="op">false</span> <span class="op">∨</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">↑</span> 0 <span class="op">=</span> 0
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Negation of `false`” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="`¬ false ≡ true`">(3.13) “Negation of `false`”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">true</span> <span class="op">∨</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">↑</span> 0 <span class="op">=</span> 0
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Zero of ∨” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="`p ∨ true ≡ true`">(3.29) “Zero of ∨”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">true</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">All steps OK</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Calculation matches goal ─ OK</span>
+
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><span class="ConjStatusProven">Induction step</span>:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong><span class="ConjStatusProven">Proving</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;`<span class="op">suc</span> <span class="var">k</span> <span class="op">≤</span> <span class="op">suc</span> <span class="var">n</span> <span class="op">⇒</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">↑</span> <span class="op">suc</span> <span class="var">n</span> <span class="op">=</span> <span class="op">suc</span> <span class="var">n</span>`:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">suc</span> <span class="var">k</span> <span class="op">≤</span> <span class="op">suc</span> <span class="var">n</span> <span class="op">⇒</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">↑</span> <span class="op">suc</span> <span class="var">n</span> <span class="op">=</span> <span class="op">suc</span> <span class="var">n</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Definition of ≤ in terms of &lt;” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="`a ≤ b ≡ a < b ∨ a = b`">“Definition of ≤ in terms of <”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">suc</span> <span class="var">k</span> <span class="op">&lt;</span> <span class="op">suc</span> <span class="var">n</span> <span class="op">∨</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">=</span> <span class="op">suc</span> <span class="var">n</span> <span class="op">⇒</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">↑</span> <span class="op">suc</span> <span class="var">n</span> <span class="op">=</span> <span class="op">suc</span> <span class="var">n</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “&lt;-Isotonicity of successor” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`suc a < suc b ≡ a < b`">“<-Isotonicity of `suc`”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="var">k</span> <span class="op">&lt;</span> <span class="var">n</span> <span class="op">∨</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">=</span> <span class="op">suc</span> <span class="var">n</span> <span class="op">⇒</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">↑</span> <span class="op">suc</span> <span class="var">n</span> <span class="op">=</span> <span class="op">suc</span> <span class="var">n</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Cancellation of `suc`” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`suc m = suc n ≡ m = n`">“Cancellation of `suc`”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="var">k</span> <span class="op">&lt;</span> <span class="var">n</span> <span class="op">∨</span> <span class="var">k</span> <span class="op">=</span> <span class="var">n</span> <span class="op">⇒</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">↑</span> <span class="op">suc</span> <span class="var">n</span> <span class="op">=</span> <span class="op">suc</span> <span class="var">n</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Definition of ≤ in terms of &lt;” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="`a ≤ b ≡ a < b ∨ a = b`">“Definition of ≤ in terms of <”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="var">k</span> <span class="op">≤</span> <span class="var">n</span> <span class="op">⇒</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">↑</span> <span class="op">suc</span> <span class="var">n</span> <span class="op">=</span> <span class="op">suc</span> <span class="var">n</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Definition of ↑ for `suc`” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`suc m ↑ suc n = suc (m ↑ n)`">“Distributivity of `suc` over ↑”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="var">k</span> <span class="op">≤</span> <span class="var">n</span> <span class="op">⇒</span> <span class="op">suc</span> (<span class="var">k</span> <span class="op">↑</span> <span class="var">n</span>) <span class="op">=</span> <span class="op">suc</span> <span class="var">n</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Cancellation of `suc`” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`suc m = suc n ≡ m = n`">“Cancellation of `suc`”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="var">k</span> <span class="op">≤</span> <span class="var">n</span> <span class="op">⇒</span> <span class="var">k</span> <span class="op">↑</span> <span class="var">n</span> <span class="op">=</span> <span class="var">n</span> &nbsp; &nbsp;  &mdash; <span class="ConjStatusProven">This is</span> Induction hypothesis `<span class="var">k</span> <span class="op">≤</span> <span class="var">n</span> <span class="op">⇒</span> <span class="var">k</span> <span class="op">↑</span> <span class="var">n</span> <span class="op">=</span> <span class="var">n</span>`
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Final “This is”: Found induction hypothesis `k ≤ n ⇒ k ↑ n = n`</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">All steps OK</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Calculation matches goal ─ OK</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Base case and induction step both present</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Induction proof OK</span>&nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Base case and induction step both present</span>&nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Induction proof OK</span>
+<br>
+<b>Top-Level Reports:</b>
+<br>
+<span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Found assigned item: Theorem “At most via maximum”: k ≤ n ⇒ k ↑ n = n</span>
+<br>
+<span class="RKInfo"> &mdash; CalcCheck: </span><span class="RKInfo">(You have “proof length” 25; it is possible to have “proof length” 13.)</span>
+<br>
+<span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Proof of Theorem “At most via maximum”: k ≤ n ⇒ k ↑ n = n appears to be correct: 13/13</span>
+<br>
+
+<br>
+<p>Subtraction interacts with maximum and minimum in interesting ways. About subtraction, in particular the following theorems are preloaded:</p>
+<pre><code>Axiom “Subtraction from zero”:                         0 -       n  =  0
+Axiom “Subtraction of zero from successor”:      (suc m) -       0  =  suc m
+Axiom “Subtraction of successor from successor”: (suc m) - (suc n)  =  m - n
+Theorem “Right-identity of subtraction”:                     m - 0  =  m
+Theorem “Self-cancellation of subtraction”:                  m - m  =  0
+Theorem “Subtraction after addition”:                  (m + n) - n  =  m
+Theorem “Subtraction of sum”:                          k - (m + n)  =  (k - m) - n
+Theorem “Subtraction is non-increasing”:                     a - b  ≤  a</code></pre>
+<p>As usual, you are allowed to use theorems from above even if you did not finish their proofs.</p>
+<p>(You are also allowed to prove your own auxiliary lemmas, but this will probably not be needed.)</p>
+<br>
+<div style="border: 3px outset #e8C080; padding: 0px 12px;">
+<pre><code> 1:  Theorem “Subtracting minimum”:  k - (m ↓ n) = (k - m) ↑ (k - n)
+ 2:  Proof:
+ 3:    By induction on `k : ℕ`:
+ 4:      Base case:
+ 5:          0 - (m ↓ n) = (0 - m) ↑ (0 - n)
+ 6:        ≡⟨ “Subtraction from zero” ⟩
+ 7:          0 - (m ↓ n) = 0 ↑ 0
+ 8:        ≡⟨ “Definition of ↑ for 0” ⟩
+ 9:          0 - (m ↓ n) = 0
+10:        ≡⟨ “Subtraction from zero” ⟩
+11:          0 = 0
+12:        ≡⟨ Fact `0 = 0` ⟩
+13:          true
+14:      Induction step:
+15:          By induction on `m : ℕ`:
+16:            Base case:
+17:                suc k - (0 ↓ n) = (suc k - 0) ↑ (suc k - n)
+18:              ≡⟨ “Definition of ↓ for 0” ⟩
+19:                suc k - 0 = (suc k - 0) ↑ (suc k - n)
+20:              ≡⟨ “Right-identity of subtraction” ⟩
+21:                suc k = (suc k - 0) ↑ (suc k - n)
+22:              ≡⟨ “Subtraction of zero from successor” ⟩
+23:                suc k = suc k ↑ (suc k - n)
+24:              ≡⟨ “Reflexivity of =” ⟩
+25:                true
+26:            Induction step:
+27:              By induction on `n : ℕ`:
+28:                Base case:
+29:                    suc k - (suc m ↓ 0) = (suc k - suc m) ↑ (suc k - 0)
+30:                  ≡⟨ “Subtraction of successor from successor” ⟩
+31:                    suc k - (suc m ↓ 0) = (k - m) ↑ (suc k - 0)
+32:                  ≡⟨ “Subtraction of zero from successor” ⟩
+33:                    suc k - (suc m ↓ 0) = (k - m) ↑ (suc k)
+34:                  ≡⟨ “Definition of ↓ for 0” ⟩
+35:                    suc k - (suc m) = (k - m) ↑ (suc k)
+36:                  ≡⟨ “Cancellation of `suc`” ⟩
+37:                    k - m = k - m ↑ suc k
+38:                  ≡⟨ “Reflexivity of =” ⟩
+39:                    true
+40:                Induction step:
+41:                    suc k - (suc m ↓ suc n) = (suc k - suc m) ↑ (suc k - suc n)
+42:                  ≡⟨ “Definition of ↓ for `suc`” ⟩
+43:                    suc k - (suc (m ↓ n)) = (suc k - suc m) ↑ (suc k - suc n)
+44:                  ≡⟨ “Subtraction of successor from successor” ⟩
+45:                    k - (m ↓ n) = (k - m) ↑ (k - n) — This is induction hypothesis `k - (m ↓ n) = (k - m) ↑ (k - n)`
+46:                  
+47:                    
+48:                    
+49:                </code></pre>
+</div>
+<br>
+<b><span class="ConjStatusOpen">Theorem</span> “Subtracting minimum”:</b> <span class="var">k</span> <span class="op">-</span> (<span class="var">m</span> <span class="op">↓</span> <span class="var">n</span>) <span class="op">=</span> <span class="var">k</span> <span class="op">-</span> <span class="var">m</span> <span class="op">↑</span> <span class="var">k</span> <span class="op">-</span> <span class="var">n</span>
+<br>
+<b>Proof:</b>
+<br>
+&nbsp; &nbsp; <b><span class="ConjStatusOpen">By induction</span> on `<span class="var">k</span> : <span class="op">ℕ</span>`:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><span class="ConjStatusProven">Base case</span>:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong><span class="ConjStatusProven">Proving</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;`0 <span class="op">-</span> (<span class="var">m</span> <span class="op">↓</span> <span class="var">n</span>) <span class="op">=</span> 0 <span class="op">-</span> <span class="var">m</span> <span class="op">↑</span> 0 <span class="op">-</span> <span class="var">n</span>`:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0 <span class="op">-</span> (<span class="var">m</span> <span class="op">↓</span> <span class="var">n</span>) <span class="op">=</span> 0 <span class="op">-</span> <span class="var">m</span> <span class="op">↑</span> 0 <span class="op">-</span> <span class="var">n</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Subtraction from zero” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`0 - n = 0`">“Subtraction from zero”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0 <span class="op">-</span> (<span class="var">m</span> <span class="op">↓</span> <span class="var">n</span>) <span class="op">=</span> 0 <span class="op">↑</span> 0
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Definition of ↑ for 0” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`m ↑ 0 = m`">“Right-identity of ↑”</span></span>, <span class="ConjStatusAxiom"><span title="`0 ↑ n = n`">“Left-identity of ↑”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0 <span class="op">-</span> (<span class="var">m</span> <span class="op">↓</span> <span class="var">n</span>) <span class="op">=</span> 0
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Subtraction from zero” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`0 - n = 0`">“Subtraction from zero”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0 <span class="op">=</span> 0
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> <span class="ConjStatusProven">Fact </span>`0 <span class="op">=</span> 0`&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKNoChange"> &mdash; CalcCheck: </span><span class="RKNoChange">OK (no change)</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">true</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">All steps OK</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Calculation matches goal ─ OK</span>
+
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b><span class="ConjStatusOpen">Induction step</span>:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><span class="ConjStatusOpen">By induction</span> on `<span class="var">m</span> : <span class="op">ℕ</span>`:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><span class="ConjStatusOpen">Base case</span>:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong><span class="ConjStatusOpen">Proving</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;`<span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> (0 <span class="op">↓</span> <span class="var">n</span>) <span class="op">=</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> 0 <span class="op">↑</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> <span class="var">n</span>`:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> (0 <span class="op">↓</span> <span class="var">n</span>) <span class="op">=</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> 0 <span class="op">↑</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> <span class="var">n</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Definition of ↓ for 0” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`m ↓ 0 = 0`">“Right-zero of ↓”</span></span>, <span class="ConjStatusAxiom"><span title="`0 ↓ n = 0`">“Left-zero of ↓”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> 0 <span class="op">=</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> 0 <span class="op">↑</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> <span class="var">n</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Right-identity of subtraction” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusProven"><span title="`m - 0 = m`">“Right-identity of subtraction”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">suc</span> <span class="var">k</span> <span class="op">=</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> 0 <span class="op">↑</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> <span class="var">n</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Subtraction of zero from successor” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`suc m - 0 = suc m`">“Subtraction of zero from successor”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">suc</span> <span class="var">k</span> <span class="op">=</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">↑</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> <span class="var">n</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusOpen">⟨</span> “Reflexivity of =” <span class="HBConjStatusOpen">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`x = x`">(1.2) “Reflexivity of =”</span></span></span><span class="RKInconclusive">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Could not justify this step!</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">true</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">1 out of 4 steps not justified</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Calculation matches goal ─ OK</span>
+
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><span class="ConjStatusOpen">Induction step</span>:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><span class="ConjStatusOpen">By induction</span> on `<span class="var">n</span> : <span class="op">ℕ</span>`:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><span class="ConjStatusOpen">Base case</span>:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong><span class="ConjStatusOpen">Proving</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;`<span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> (<span class="op">suc</span> <span class="var">m</span> <span class="op">↓</span> 0) <span class="op">=</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> <span class="op">suc</span> <span class="var">m</span> <span class="op">↑</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> 0`:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> (<span class="op">suc</span> <span class="var">m</span> <span class="op">↓</span> 0) <span class="op">=</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> <span class="op">suc</span> <span class="var">m</span> <span class="op">↑</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> 0
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Subtraction of successor from successor” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`suc m - suc n = m - n`">“Subtraction of successor from successor”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> (<span class="op">suc</span> <span class="var">m</span> <span class="op">↓</span> 0) <span class="op">=</span> <span class="var">k</span> <span class="op">-</span> <span class="var">m</span> <span class="op">↑</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> 0
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Subtraction of zero from successor” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`suc m - 0 = suc m`">“Subtraction of zero from successor”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> (<span class="op">suc</span> <span class="var">m</span> <span class="op">↓</span> 0) <span class="op">=</span> <span class="var">k</span> <span class="op">-</span> <span class="var">m</span> <span class="op">↑</span> <span class="op">suc</span> <span class="var">k</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusOpen">⟨</span> “Definition of ↓ for 0” <span class="HBConjStatusOpen">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`m ↓ 0 = 0`">“Right-zero of ↓”</span></span>, <span class="ConjStatusAxiom"><span title="`0 ↓ n = 0`">“Left-zero of ↓”</span></span></span><span class="RKInconclusive">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Could not justify this step!</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> <span class="op">suc</span> <span class="var">m</span> <span class="op">=</span> <span class="var">k</span> <span class="op">-</span> <span class="var">m</span> <span class="op">↑</span> <span class="op">suc</span> <span class="var">k</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusOpen">⟨</span> “Cancellation of `suc`” <span class="HBConjStatusOpen">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`suc m = suc n ≡ m = n`">“Cancellation of `suc`”</span></span></span><span class="RKInconclusive">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Could not justify this step!</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="var">k</span> <span class="op">-</span> <span class="var">m</span> <span class="op">=</span> <span class="var">k</span> <span class="op">-</span> <span class="var">m</span> <span class="op">↑</span> <span class="op">suc</span> <span class="var">k</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusOpen">⟨</span> “Reflexivity of =” <span class="HBConjStatusOpen">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`x = x`">(1.2) “Reflexivity of =”</span></span></span><span class="RKInconclusive">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Could not justify this step!</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">true</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">3 out of 5 steps not justified</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Calculation matches goal ─ OK</span>
+
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b><span class="ConjStatusProven">Induction step</span>:</b>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong><span class="ConjStatusProven">Proving</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;`<span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> (<span class="op">suc</span> <span class="var">m</span> <span class="op">↓</span> <span class="op">suc</span> <span class="var">n</span>) <span class="op">=</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> <span class="op">suc</span> <span class="var">m</span> <span class="op">↑</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> <span class="op">suc</span> <span class="var">n</span>`:
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> (<span class="op">suc</span> <span class="var">m</span> <span class="op">↓</span> <span class="op">suc</span> <span class="var">n</span>) <span class="op">=</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> <span class="op">suc</span> <span class="var">m</span> <span class="op">↑</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> <span class="op">suc</span> <span class="var">n</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Definition of ↓ for `suc`” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`suc m ↓ suc n = suc (m ↓ n)`">“Distributivity of `suc` over ↓”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> <span class="op">suc</span> (<span class="var">m</span> <span class="op">↓</span> <span class="var">n</span>) <span class="op">=</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> <span class="op">suc</span> <span class="var">m</span> <span class="op">↑</span> <span class="op">suc</span> <span class="var">k</span> <span class="op">-</span> <span class="op">suc</span> <span class="var">n</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="op">≡</span> <span class="HBConjStatusProven">⟨</span> “Subtraction of successor from successor” <span class="HBConjStatusProven">⟩</span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck: Found <span class="ConjStatusAxiom"><span title="`suc m - suc n = m - n`">“Subtraction of successor from successor”</span></span></span><span class="RKConfirmedOK">
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &mdash; CalcCheck:    ─   OK</span>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="var">k</span> <span class="op">-</span> (<span class="var">m</span> <span class="op">↓</span> <span class="var">n</span>) <span class="op">=</span> <span class="var">k</span> <span class="op">-</span> <span class="var">m</span> <span class="op">↑</span> <span class="var">k</span> <span class="op">-</span> <span class="var">n</span> &nbsp; &nbsp;  &mdash; <span class="ConjStatusProven">This is</span> Induction hypothesis `<span class="var">k</span> <span class="op">-</span> (<span class="var">m</span> <span class="op">↓</span> <span class="var">n</span>) <span class="op">=</span> <span class="var">k</span> <span class="op">-</span> <span class="var">m</span> <span class="op">↑</span> <span class="var">k</span> <span class="op">-</span> <span class="var">n</span>`
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Final “This is”: Found induction hypothesis `k - (m ↓ n) = k - m ↑ k - n`</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">All steps OK</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Calculation matches goal ─ OK</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Base case and induction step both present</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">Induction proof not fully justified:</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">3 inconclusive checks</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Base case and induction step both present</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">Induction proof not fully justified:</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">3 inconclusive checks</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">4 inconclusive checks</span>&nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; <span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Base case and induction step both present</span>&nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; <span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">Induction proof not fully justified:</span>&nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; <span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">3 inconclusive checks</span>&nbsp; &nbsp; 
+<br>
+&nbsp; &nbsp; <span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">4 inconclusive checks</span>
+<br>
+<b>Top-Level Reports:</b>
+<br>
+<span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Found assigned item: Theorem “Subtracting minimum”: k - (m ↓ n) = k - m ↑ k - n</span>
+<br>
+<span class="RKInconclusive"> &mdash; CalcCheck: </span><span class="RKInconclusive">Flawed proof attempt for: Theorem “Subtracting minimum”: k - (m ↓ n) = k - m ↑ k - n: 19/22</span>
+<br>
+
+<br>
+<h2 id="concluding-declarations">Concluding Declarations</h2>
+<br>
+<p>Are your answers above completely your own work? (“No answer” is wrong.)</p>
+<ul>
+<li><input type="radio" name="A1IEnd" id="A1IEnd_MCQItem_1" height="2em" width="2em" value="1" checked><label for="A1IEnd_MCQItem_1" id="A1IEnd_MCQLabel_1"> &nbsp;Yes</label></li>
+<li><input type="radio" name="A1IEnd" id="A1IEnd_MCQItem_2" height="2em" width="2em" value="2"><label for="A1IEnd_MCQItem_2" id="A1IEnd_MCQLabel_2"> &nbsp;No</label></li>
+</ul>
+<br>
+<b>Top-Level Reports:</b>
+<br>
+<span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Found assigned item: MCQ A1IEnd</span>
+<br>
+<span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Question A1IEnd answered correctly: 0/0</span>
+<br>
+
+<br>
+<p>The text box below is the <strong>report box</strong>: If you want to leave us any message(s) that will be read when we mark the midterm, please select “Yes” here and write your message(s) in the <strong>text box below</strong>, by hitting <code>ENTER</code> with focus on that box.</p>
+<ul>
+<li><input type="radio" name="qA1ReportBox" id="qA1ReportBox_MCQItem_1" height="2em" width="2em" value="1"><label for="qA1ReportBox_MCQItem_1" id="qA1ReportBox_MCQLabel_1"> &nbsp;Yes, I have entered messages below.</label></li>
+<li><input type="radio" name="qA1ReportBox" id="qA1ReportBox_MCQItem_2" height="2em" width="2em" value="2" checked><label for="qA1ReportBox_MCQItem_2" id="qA1ReportBox_MCQLabel_2"> &nbsp;No, there are no relevant messages below.</label></li>
+</ul>
+<p>(The text boxes allow Markdown; hit <code>Ctrl-ENTER</code> to see the layout result.)</p>
+<br>
+<b>Top-Level Reports:</b>
+<br>
+<span class="RKConfirmedOK"> &mdash; CalcCheck: </span><span class="RKConfirmedOK">Found assigned item: MCQ qA1ReportBox</span>
+<br>
+<span class="RKInfo"> &mdash; CalcCheck: </span><span class="RKInfo">Report box not signalled.</span>
+<br>
+
+<br>
+<p><strong>Report box:</strong> Add your messages here (after hitting <code>ENTER</code> on this box).</p>
+<p>.</p>
+</body>
+</html>
+
