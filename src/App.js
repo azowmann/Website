@@ -13,7 +13,7 @@ function App() {
       <Works/>
       <Projects/>
       <Contact/>
-      <Footer/>
+
     </div>
   );
 }
