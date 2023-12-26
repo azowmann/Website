@@ -12,9 +12,10 @@
 
 .projectTitle {
     font-size: 3rem;
-    font-weight: 600;
+    font-weight: 280;
     padding-top: 3rem;
     margin-bottom: 1.5rem;
+    color: #00416a;
 }
 
 .projectDesc {
@@ -36,7 +37,7 @@
     margin: 1rem;
     padding: 1.5rem 2rem;
     border-radius: 0.75rem;
-    background: rgb(189, 214, 218);
+    background: rgb(240, 220, 201);
 }
 
 .projectBarImg{
@@ -46,9 +47,15 @@
     margin-right: 3rem;
 }
 
+.projectBarText>h2 {
+    color: #3e4c5b;
+    font-weight: 500;
+}
+
 .projectBarText>p {
     font-size: 0.9rem;
-    font-weight: 200;
+    font-weight: 400;
+    color: #3e4c5b;
 }
 
 @media screen and (max-width:480px) {

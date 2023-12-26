@@ -1,5 +1,5 @@
 .navbar {
-    background: rgb(174, 194, 194);
+    background: rgb(231, 225, 217);
     height: 5rem;
     width: 100vw;
     margin: 0 auto;
@@ -12,8 +12,6 @@
     z-index: 3;
 }
 
-
-
 .logo {
      object-fit: cover;
      height: 3rem;
@@ -21,15 +19,15 @@
 }
 
 .desktopMenuListItem {
-    color: white;
+    color: black;
     margin: 1rem;
     cursor: pointer;
 }
 
 .desktopMenuListItem:hover {
-    color:rgb(62, 56, 66);
+    color:rgb(139, 136, 129);
     padding-bottom: 0.5rem;
-    border-bottom: 3px solid rgb(116, 133, 143);
+    border-bottom: 3px solid rgb(139, 136, 129);
 }
 
 .desktopMenuBtn {
@@ -45,7 +43,7 @@
 }
 
 .active {
-    color: rgb(40, 21, 36);
+    color: rgb(20, 17, 20);
     padding-bottom: 0.5rem;
-    border-bottom: 3px solid rgb(40, 21, 36);
+    border-bottom: 3px solid rgb(20, 17, 20);
 }

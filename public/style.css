@@ -4,12 +4,12 @@
     box-sizing: border-box;
     text-decoration: none;
     background: transparent;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'PT Serif', serif;
 }
 
 body {
-    background: rgb(164, 189, 190);
-    color: white;
+    background: rgb(250,240,230);
+    color: black;
     overflow: hidden;
     overflow-y: scroll;
 }

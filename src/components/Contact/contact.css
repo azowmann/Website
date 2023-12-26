@@ -10,6 +10,11 @@
     justify-content: center;
 }
 
+.contactPageTitle {
+    font-weight: 500;
+    font-size: xx-large;
+}
+
 .contactDesc {
     padding: 1rem;
     font-size: medium;

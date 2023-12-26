@@ -18,8 +18,8 @@ const Projects = () => {
             <div className='projectBar'>
                 <img src="" alt="" className='projectBarImg' />
                 <div className='projectBarText'>
-                    <h2></h2>
-                    <p></p>
+                    <h2>Portfolio Website</h2>
+                    <p>This is demo text, write smth here abt it</p>
                 </div>
             </div>
             <div className='projectBar'>
