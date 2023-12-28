@@ -12,14 +12,14 @@ const Projects = () => {
                 <img src={CalculatorLogo} alt="Calculator" className='projectBarImg' />
                 <div className='projectBarText'>
                     <h2>Calculator</h2>
-                    <p>This is demo text, write smth here abt it</p>
+                    <a className='ProjectCalculatorSC' href="https://github.com/azowmann/Calculator" target="_blank">Source Code</a>
                 </div>
             </div>
             <div className='projectBar'>
                 <img src="" alt="" className='projectBarImg' />
                 <div className='projectBarText'>
                     <h2>Portfolio Website</h2>
-                    <p>This is demo text, write smth here abt it</p>
+                    <a className='ProjectWebsiteSC' href="https://github.com/azowmann/Website" target="_blank">Source Code</a>
                 </div>
             </div>
             <div className='projectBar'>

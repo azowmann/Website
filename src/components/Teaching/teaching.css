@@ -9,3 +9,49 @@
     text-align: center;
     margin: 0 auto;
 }
+
+.teachingTitle {
+    font-size: 3rem;
+    font-weight: 280;
+    padding-top: 3rem;
+    margin-bottom: 1.5rem;
+    color: #00416a;
+}
+
+.teachingBars {
+    margin: 1.5rem;
+    width: 100vw;
+    max-width: 80%;
+    text-align: left;
+}
+
+.teachingBar {
+    display: flex;
+    margin: 1rem;
+    padding: 1.5rem 2rem;
+    border-radius: 0.75rem;
+    background: rgb(240, 220, 201);
+}
+
+.teachingBarText>h2 {
+    color: #3e4c5b;
+    font-weight: 500;
+}
+
+.teachingBarText>p {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #3e4c5b;
+}
+
+.mathatlist {
+    list-style-type: none;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.mathatdesc {
+    list-style-type: disc;
+    padding-left: 40px;
+    padding-top: 10px;
+}
