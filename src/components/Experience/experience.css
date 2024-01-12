@@ -1,4 +1,4 @@
-#teaching {
+#experience {
     overflow: hidden;
     width: 100vw;
     max-width: 120rem;
@@ -10,7 +10,7 @@
     margin: 0 auto;
 }
 
-.teachingTitle {
+.experienceTitle {
     font-size: 3rem;
     font-weight: 280;
     padding-top: 3rem;
@@ -18,14 +18,14 @@
     color: #00416a;
 }
 
-.teachingBars {
+.experienceBars {
     margin: 1.5rem;
     width: 100vw;
     max-width: 80%;
     text-align: left;
 }
 
-.teachingBar {
+.experienceBar {
     display: flex;
     margin: 1rem;
     padding: 1.5rem 2rem;
@@ -33,24 +33,24 @@
     background: rgb(240, 220, 201);
 }
 
-.teachingBarText>h2 {
+.experienceBarText>h2 {
     color: #3e4c5b;
     font-weight: 500;
 }
 
-.teachingBarText>p {
+.experienceBarText>p {
     font-size: 0.9rem;
     font-weight: 400;
     color: #3e4c5b;
 }
 
-.mathatlist {
+.mathatlist, .leadatlist {
     list-style-type: none;
     padding-left: 20px;
     padding-top: 10px;
 }
 
-.mathatdesc {
+.mathatdesc, .leadatdesc {
     list-style-type: disc;
     padding-left: 40px;
     padding-top: 10px;

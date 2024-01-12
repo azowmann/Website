@@ -1,6 +1,8 @@
 import React from 'react';
 import './projects.css';
 import CalculatorLogo from '../../pictures/calculator-2017-10-10.png';
+import WebsiteLogo from '../../pictures/free-global-2031088-1714467.webp';
+import ExtensionLogo from '../../pictures/61015.png';
 
 const Projects = () => {
   return (
@@ -20,20 +22,23 @@ const Projects = () => {
                 </div>
             </div>
             <div className='projectBar'>
-                <img src="" alt="" className='projectBarImg' />
+                <img src={WebsiteLogo} alt="Website" className='projectBarImg' />
                 <div className='projectBarText'>
-                <a className='ProjectWebsiteSC' href="https://github.com/azowmann/Website" target="_blank"> Portfolio Website</a>
-                <ul class='portwebdesc'>
+                <a className='ProjectWebsiteSC' href="https://github.com/azowmann/Website" target="_blank">Portfolio Website</a>
+                    <ul class='portwebdesc'>
                       <li>Created a responsive website showcasing my portfolio with a seamless viewing experience across different devices and screen sizes, enhancing accessibility and user engagement.</li>
                       <li>Enhanced the user-friendliness of the website by implementing interactive features such as a dynamic menu and scroll effects, delivering an engaging and intuitive browsing experience for visitors.</li>
                     </ul>
                 </div>
             </div>
             <div className='projectBar'>
-                <img src="" alt="" className='projectBarImg' />
+                <img src={ExtensionLogo} alt="Website" className='projectBarImg' />
                 <div className='projectBarText'>
-                    <h2></h2>
-                    <p></p>
+                <a className='ProjectWebsiteSC' href="https://github.com/azowmann/Know-your-Macros" target="_blank">Know Your Macros</a>
+                    <ul class='extensiondesc'>
+                      <li>Developed a Google Chrome extension that retrieves a macronutrient of choice (calories, fats, carbohydrates, proteins) of the food by user input through API Ninjas Nutrition API. This extension makes finding general information on foods faster and more accessible. </li>
+                      <li>Sampled by five peers of mine to test functionality. It is found useful often for those who meal-prep, and those with specific nutrition goals, as the fast retrieval of information makes it easy to know exactly what to shop for. </li>
+                    </ul>
                 </div>
             </div>
         </div>

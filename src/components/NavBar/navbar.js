@@ -12,6 +12,7 @@ const Navbar = () => {
             <a className='desktopMenuListItem' href="https://drive.google.com/drive/folders/1gvxGvMb80dUoDP_dWcGp7NM5xH8J2HIB?usp=sharing" target="_blank">Resume</a>
             <a className='desktopMenuListItem' href="https://www.linkedin.com/in/alan-zhou-893481246/" target="_blank">LinkedIn</a>
             <Link activeClass='active' to='projects' spy={true} smooth={true} offset={-100} duration={500} className='desktopMenuListItem'>Projects</Link>
+            <Link activeClass='active' to='experience' spy={true} smooth={true} offset={-100} duration={500} className='desktopMenuListItem'>Experience</Link>
         </div>
         <button className="desktopMenuBtn" onClick={() => {
           document.getElementById('contact').scrollIntoView({behavior: 'smooth'});

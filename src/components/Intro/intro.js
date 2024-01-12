@@ -13,9 +13,9 @@ const Intro = () => {
     <section id="intro">
         <div className='introContent'>
             <span className="hello">Hi, I'm Alan,</span>
-            <p className='introPara'>a second year Computer Science student at McMaster University. I'm passionate about positivity and problem solving. <br /> I am 
-            currently building my career in Software Engineering with hopes of eventually working in Artifical Intelligence <br />Research in the future. Feel free
-            to reach out to me on LinkedIn or by email, and even check out my social media if <br />you'd like! Thanks for stopping by.</p>
+            <p className='introPara'>a second year Computer Science student at McMaster University. I'm passionate about positivity and problem solving. I am 
+            currently building my career in Software Engineering with hopes of eventually working in Artifical Intelligence Research in the future. Feel free
+            to reach out to me on LinkedIn or by email, and even check out my social media if you'd like! Thanks for stopping by.</p>
             <div className='social-media-icons'>
               <a className='social-icon' href="https://www.instagram.com/alan.zhou_34/" target="_blank">
                 <FontAwesomeIcon icon={faInstagram} />

@@ -52,7 +52,9 @@
     font-weight: 500;
 }
 
-.ProjectCalculatorSC {
+.ProjectCalculatorSC,
+.ProjectWebsiteSC,
+.ProjectExtensionSC {
     color: #3e4c5b;
     font-weight: 500;
     font-size: x-large;
@@ -62,6 +64,12 @@
     font-size: 0.9rem;
     font-weight: 400;
     color: #3e4c5b;
+}
+
+.projectBarText ul {
+    padding-left: 1.5rem;
+    list-style: disc;
+    margin: 0;
 }
 
 @media screen and (max-width:480px) {
