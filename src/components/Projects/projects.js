@@ -11,15 +11,22 @@ const Projects = () => {
             <div className='projectBar'>
                 <img src={CalculatorLogo} alt="Calculator" className='projectBarImg' />
                 <div className='projectBarText'>
-                    <h2>Calculator</h2>
-                    <a className='ProjectCalculatorSC' href="https://github.com/azowmann/Calculator" target="_blank">Source Code</a>
+                <a className='ProjectCalculatorSC' href="https://github.com/azowmann/Calculator" target="_blank">Calculator</a>
+                    <ul class='mathatdesc'>
+                      <li>Mimicked the standard locked screen version of iPhone’s calculator app. Created an environment similar to the iPhone app, allowing for familiarity among most iOS users.</li>
+                      <li>Logic developed solely for basic operations including addition, subtraction, multiplication, and division.</li>
+                      <li>Implemented a dynamic contact form, allowing users of the website to efficiently send messages to me via email.</li>
+                    </ul>
                 </div>
             </div>
             <div className='projectBar'>
                 <img src="" alt="" className='projectBarImg' />
                 <div className='projectBarText'>
-                    <h2>Portfolio Website</h2>
-                    <a className='ProjectWebsiteSC' href="https://github.com/azowmann/Website" target="_blank">Source Code</a>
+                <a className='ProjectWebsiteSC' href="https://github.com/azowmann/Website" target="_blank"> Portfolio Website</a>
+                <ul class='portwebdesc'>
+                      <li>Created a responsive website showcasing my portfolio with a seamless viewing experience across different devices and screen sizes, enhancing accessibility and user engagement.</li>
+                      <li>Enhanced the user-friendliness of the website by implementing interactive features such as a dynamic menu and scroll effects, delivering an engaging and intuitive browsing experience for visitors.</li>
+                    </ul>
                 </div>
             </div>
             <div className='projectBar'>

@@ -52,6 +52,12 @@
     font-weight: 500;
 }
 
+.ProjectCalculatorSC {
+    color: #3e4c5b;
+    font-weight: 500;
+    font-size: x-large;
+}
+
 .projectBarText>p {
     font-size: 0.9rem;
     font-weight: 400;
