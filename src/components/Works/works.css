@@ -7,10 +7,72 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    padding: 0 1rem;
 }
 
 .workstitle {
      font-weight: 300;
      font-size: 3rem;
      color: #00416a;
+}
+
+.worksDesc {
+    font-weight: 300;
+    font-size: 1rem;
+    max-width: 45rem;
+}
+
+.worksImgs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    max-width: 65rem;
+}
+
+.worksImg {
+    object-fit: cover;
+    max-height: 100%;
+    width: 100%;
+    margin: 2rem;
+
+}
+
+.worksBars {
+    display: flex;
+    justify-content: space-around; /* Adjust as needed to control the space between bars */
+    height: 150%;
+    width: 140%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 10px;
+  }
+
+.worksBar {
+    width: calc(33.333% - 2rem); /* Adjust width and margin as needed */
+    margin: 2rem;
+    padding: 1.5rem 2rem;
+    border-radius: 0.75rem;
+    background: rgb(240, 220, 201);
+  }
+
+.worksBarContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .worksBarText {
+    margin-top: 1rem; 
+  }
+
+
+
+@media screen and (max-width:585px) {
+    .worksImg {
+        height: 48vw;
+
+    }
 }

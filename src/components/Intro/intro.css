@@ -10,11 +10,12 @@
 
 .bg {
     position: absolute;
-    top: -4rem;
+    top: 0;
     right: 0;
     z-index: -1;
     object-fit: cover;
-    max-height: calc(100vh - 4rem);
+    max-height: calc(100vh - 24rem);
+    border-radius: 2rem;
 }
 
 .introContent {
@@ -63,6 +64,7 @@
     }
     .introContent {
         font-size: 10vw;
+        max-width: 20%;
     }
     .hello {
         font-size: 4.5vw;

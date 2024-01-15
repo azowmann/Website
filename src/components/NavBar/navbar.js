@@ -1,12 +1,12 @@
 import React from 'react';
 import './navbar.css';
-import logo from '../../pictures/IMG_4430.JPG';
 import { Link } from 'react-scroll';
+import AZ_logo from '../../pictures/AZ_Logo.png';
 
 const Navbar = () => {
   return (
     <nav className='navbar'>
-        <img src={logo} alt="Logo" className='logo'/>
+        <img src={AZ_logo} alt="Logo" className='logo'/>
         <div className='desktopMenu'>
             <Link activeClass='active' to='intro' spy={true} smooth={true} offset={-100} duration={500} className='desktopMenuListItem'>Home</Link>
             <a className='desktopMenuListItem' href="https://drive.google.com/drive/folders/1gvxGvMb80dUoDP_dWcGp7NM5xH8J2HIB?usp=sharing" target="_blank">Resume</a>
