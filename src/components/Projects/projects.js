@@ -8,7 +8,7 @@ const Projects = () => {
   return (
     <section id='projects'>
         <span className="projectTitle">My Projects</span>
-        <span className="projectDesc">Below are some of my projects!</span>
+        <span className="projectDesc">Below are some of my personal projects!</span>
         <div className='projectBars'>
             <div className='projectBar'>
                 <img src={CalculatorLogo} alt="Calculator" className='projectBarImg' />

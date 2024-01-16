@@ -14,6 +14,7 @@
 .workstitle {
      font-weight: 300;
      font-size: 3rem;
+     margin-bottom: 1.5rem;
      color: #00416a;
 }
 
@@ -21,6 +22,8 @@
     font-weight: 300;
     font-size: 1rem;
     max-width: 45rem;
+    padding: 0 2rem;
+    color: #00416a;
 }
 
 .worksImgs {
@@ -41,7 +44,7 @@
 
 .worksBars {
     display: flex;
-    justify-content: space-around; /* Adjust as needed to control the space between bars */
+    justify-content: space-around; 
     height: 150%;
     width: 140%;
     margin-top: 0;
@@ -50,11 +53,15 @@
   }
 
 .worksBar {
-    width: calc(33.333% - 2rem); /* Adjust width and margin as needed */
+    width: calc(33.333% - 2rem); 
     margin: 2rem;
     padding: 1.5rem 2rem;
     border-radius: 0.75rem;
     background: rgb(240, 220, 201);
+  }
+
+  .worksBarTitle {
+    font-weight: bold;
   }
 
 .worksBarContent {
